@@ -38,20 +38,17 @@ def index():
 def between():
     data = request.json
 
-    if "first" not in data or "last" in data:
-        return jsonify({"error": "Missing required data."}), 400
+    if not data or "first" not in data or "last" not in data:
+        return {"error": "Missing required data."}, 400
 
-    elif not type(data["first"]) == str or not type(data["last"]) == str:
-        return jsonify({"error": "Unable to convert value to datetime."}), 400
-
-    elif "." not in data["first"] or "." not in data["last"]:
-        return jsonify({"error": "Unable to convert value to datetime."}), 400
+    elif type(data["first"]) != str or type(data["last"]) != str or "." not in data["first"] or "." not in data["last"]:
+        return {"error": "Unable to convert value to datetime."}, 400
 
     first_date = convert_to_datetime(data["first"])
-    second_date = convert_to_datetime(date["last"])
+    second_date = convert_to_datetime(data["last"])
     difference = get_days_between(first_date, second_date)
 
-    return jsonify({"days": (difference).days}), 201
+    return jsonify({"days": difference}), 201
 
 
 @app.post("/weekday")
@@ -66,7 +63,7 @@ def weekday():
 @app.route("/history", methods=["GET", "DELETE"])
 def history():
     if (request.method) == "GET":
-        pass
+        return app_history, 200
 
     if (request.method) == "DELETE":
         pass

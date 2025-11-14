@@ -1,23 +1,31 @@
 ============================= test session starts ==============================
 platform linux -- Python 3.12.12, pytest-9.0.1, pluggy-1.6.0
 rootdir: /home/runner/work/Assessment-Backend-Week-1/Assessment-Backend-Week-1
-collected 0 items / 1 error
+collected 112 items
 
-!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
-=============================== 1 error in 0.11s ===============================
+days_api/test_api.py .FFFFFFFFFFFFFFFFFFFF.FFFFFFFFFFFFFFFFFFFF.FFFFFFFF [ 45%]
+FFFFFFFFFF.FFFFFFFFFFF                                                   [ 65%]
+days_api/test_date_functions.py ...FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF  [100%]
+
+======================== 105 failed, 7 passed in 0.40s =========================
 ************* Module app
-days_api/app.py:47:47: E0001: Parsing failed: 'positional argument follows keyword argument (app, line 47)' (syntax-error)
+days_api/app.py:38:0: C0116: Missing function or method docstring (missing-function-docstring)
+days_api/app.py:42:38: E1136: Value 'date' is unsubscriptable (unsubscriptable-object)
+days_api/app.py:49:0: C0116: Missing function or method docstring (missing-function-docstring)
+days_api/app.py:52:4: W0621: Redefining name 'date' from outer scope (line 5) (redefined-outer-name)
+days_api/app.py:52:4: W0612: Unused variable 'date' (unused-variable)
+days_api/app.py:56:0: C0116: Missing function or method docstring (missing-function-docstring)
+days_api/app.py:65:0: C0116: Missing function or method docstring (missing-function-docstring)
+days_api/app.py:7:0: W0611: Unused Response imported from flask (unused-import)
+days_api/app.py:9:0: W0611: Unused get_day_of_week_on imported from date_functions (unused-import)
+days_api/app.py:9:0: W0611: Unused get_current_age imported from date_functions (unused-import)
 ************* Module date_functions
-days_api/date_functions.py:6:0: C0116: Missing function or method docstring (missing-function-docstring)
-days_api/date_functions.py:6:24: W0613: Unused argument 'date_val' (unused-argument)
-days_api/date_functions.py:10:0: C0116: Missing function or method docstring (missing-function-docstring)
-days_api/date_functions.py:10:21: W0613: Unused argument 'first' (unused-argument)
-days_api/date_functions.py:10:38: W0613: Unused argument 'last' (unused-argument)
-days_api/date_functions.py:14:0: C0116: Missing function or method docstring (missing-function-docstring)
-days_api/date_functions.py:14:23: W0613: Unused argument 'date_val' (unused-argument)
-days_api/date_functions.py:18:0: C0116: Missing function or method docstring (missing-function-docstring)
-days_api/date_functions.py:18:20: W0613: Unused argument 'birthdate' (unused-argument)
+days_api/date_functions.py:13:0: C0325: Unnecessary parens after 'return' keyword (superfluous-parens)
+days_api/date_functions.py:16:0: C0116: Missing function or method docstring (missing-function-docstring)
+days_api/date_functions.py:16:23: W0613: Unused argument 'date_val' (unused-argument)
+days_api/date_functions.py:20:0: C0116: Missing function or method docstring (missing-function-docstring)
+days_api/date_functions.py:20:20: W0613: Unused argument 'birthdate' (unused-argument)
 
 -----------------------------------
-Your code has been rated at 0.00/10
+Your code has been rated at 5.25/10
 

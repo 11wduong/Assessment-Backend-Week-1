@@ -22,6 +22,7 @@ def add_to_history(current_request):
         "route": current_request.endpoint
     })
 
+
 def clear_history():
     """Clears the app history."""
     app_history.clear()
@@ -29,8 +30,32 @@ def clear_history():
 
 @app.get("/")
 def index():
-    """Returns an API welcome messsage."""
+    """Returns an API welcome message."""
     return jsonify({"message": "Welcome to the Days API."})
+
+
+@app.post("/between")
+def between():
+    pass
+
+
+@app.post("/weekday")
+def weekday():
+    pass
+
+
+@app.route("/history", methods="GET", "DELETE")
+def history():
+    if (request.method) == "GET":
+        pass
+
+    if (request.method) == "DELETE":
+        pass
+
+
+@app.get("/current_age")
+def current_age():
+    pass
 
 
 if __name__ == "__main__":

@@ -42,14 +42,16 @@ def between():
     second_date = convert_to_datetime(date["second"])
     difference = get_days_between(first_date, second_date)
 
-    return {"days": (difference).days}, 200
+    return {"days": (difference).days}, 201
 
 
 @app.post("/weekday")
 def weekday():
     data = request.json
 
-    date = convert_to_datetime(data["data"])
+    date = convert_to_datetime(data["date"])
+
+    return get_day_of_week_on(date), 201
 
 
 @app.route("/history", methods=["GET", "DELETE"])
@@ -63,7 +65,9 @@ def history():
 
 @app.get("/current_age")
 def current_age():
-    pass
+    age_date = request.args.get("age_date")
+    date_class_age = datetime.strptime(age_date, "%Y-%m-%d")
+    return {"current_age": get_current_age(date_class_age)}, 200
 
 
 if __name__ == "__main__":

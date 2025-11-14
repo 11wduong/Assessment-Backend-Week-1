@@ -14,8 +14,11 @@ def get_days_between(first: datetime, last: datetime) -> int:
 
 
 def get_day_of_week_on(date_val: datetime) -> str:
-    pass
+    """Returns the day of the week from a datetime object."""
+    return date_val.weekday()
 
 
 def get_current_age(birthdate: date) -> int:
-    pass
+    """Returns the age from inputted birthdate"""
+    today = date.today()
+    return today.year - birthdate.year - ((today.month, today.day) < (birthdate.month, birthdate.year))

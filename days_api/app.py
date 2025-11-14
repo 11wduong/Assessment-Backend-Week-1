@@ -31,20 +31,28 @@ def clear_history():
 @app.get("/")
 def index():
     """Returns an API welcome message."""
-    return jsonify({"message": "Welcome to the Days API."})
+    return jsonify({"message": "Welcome to the Days API."}), 200
 
 
 @app.post("/between")
 def between():
-    pass
+    data = request.json
+
+    first_date = convert_to_datetime(data["first"])
+    second_date = convert_to_datetime(date["second"])
+    difference = get_days_between(first_date, second_date)
+
+    return {"days": (difference).days}, 200
 
 
 @app.post("/weekday")
 def weekday():
-    pass
+    data = request.json
+
+    date = convert_to_datetime(data["data"])
 
 
-@app.route("/history", methods="GET", "DELETE")
+@app.route("/history", methods=["GET", "DELETE"])
 def history():
     if (request.method) == "GET":
         pass

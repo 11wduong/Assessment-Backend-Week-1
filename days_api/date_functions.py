@@ -39,4 +39,11 @@ def get_current_age(birthdate: date) -> int:
         raise TypeError("Date required.")
 
     today = date.today()
-    return today.year - birthdate.year - ((today.month, today.day) < (birthdate.month, birthdate.year))
+    current_age = today.year - birthdate.year - \
+        ((today.month, today.day) < (birthdate.month, birthdate.year))
+
+    if birthdate == today:
+        current_age = today.year - birthdate.year - \
+            ((today.month, today.day) > (birthdate.month, birthdate.year))
+
+    return current_age

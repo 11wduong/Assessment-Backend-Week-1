@@ -3,23 +3,26 @@ platform linux -- Python 3.12.12, pytest-9.0.1, pluggy-1.6.0
 rootdir: /home/runner/work/Assessment-Backend-Week-1/Assessment-Backend-Week-1
 collected 112 items
 
-days_api/test_api.py .FFFFFFFFFFFFFFFFFFFF...FFFFFFFFFFFFFFFFFF.FFFFFFFF [ 45%]
+days_api/test_api.py ..F.F.FFFFFFFFFFFFFFF...FFFFFFFFFFFFFFFFFF.FFFFFFFF [ 45%]
 FFFFFFFFFF.FFFFFFFFFFF                                                   [ 65%]
-days_api/test_date_functions.py ...FFFFFFFFFFFFFFFFFFFFFFFFFFFF........  [100%]
+days_api/test_date_functions.py ....................FFFFFFFFFFF........  [100%]
 
-======================== 95 failed, 17 passed in 0.42s =========================
+======================== 75 failed, 37 passed in 0.37s =========================
 ************* Module app
 days_api/app.py:38:0: C0116: Missing function or method docstring (missing-function-docstring)
-days_api/app.py:42:38: E1136: Value 'date' is unsubscriptable (unsubscriptable-object)
-days_api/app.py:49:0: C0116: Missing function or method docstring (missing-function-docstring)
-days_api/app.py:52:4: W0621: Redefining name 'date' from outer scope (line 5) (redefined-outer-name)
+days_api/app.py:41:4: R1705: Unnecessary "elif" after "return", remove the leading "el" from "elif" (no-else-return)
+days_api/app.py:44:13: C0123: Use isinstance() rather than type() for a typecheck. (unidiomatic-typecheck)
+days_api/app.py:44:47: C0123: Use isinstance() rather than type() for a typecheck. (unidiomatic-typecheck)
+days_api/app.py:51:38: E1136: Value 'date' is unsubscriptable (unsubscriptable-object)
 days_api/app.py:58:0: C0116: Missing function or method docstring (missing-function-docstring)
+days_api/app.py:61:4: W0621: Redefining name 'date' from outer scope (line 5) (redefined-outer-name)
 days_api/app.py:67:0: C0116: Missing function or method docstring (missing-function-docstring)
+days_api/app.py:76:0: C0116: Missing function or method docstring (missing-function-docstring)
 days_api/app.py:7:0: W0611: Unused Response imported from flask (unused-import)
 ************* Module date_functions
-days_api/date_functions.py:13:0: C0325: Unnecessary parens after 'return' keyword (superfluous-parens)
-days_api/date_functions.py:24:0: C0301: Line too long (103/100) (line-too-long)
+days_api/date_functions.py:35:0: C0301: Line too long (103/100) (line-too-long)
+days_api/date_functions.py:11:8: W0707: Consider explicitly re-raising using 'except ValueError as exc' and 'raise ValueError('Unable to convert value to datetime.') from exc' (raise-missing-from)
 
 -----------------------------------
-Your code has been rated at 7.05/10
+Your code has been rated at 7.19/10
 

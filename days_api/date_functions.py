@@ -24,6 +24,9 @@ def get_days_between(first: datetime, last: datetime) -> int:
 
 def get_day_of_week_on(date_val: datetime) -> str:
     """Returns the day of the week from a datetime object."""
+    if not isinstance(date_val, datetime):
+        raise TypeError("Datetime required.")
+
     weekday = ['Monday', 'Tuesday', 'Wednesday',
                'Thursday', 'Friday', 'Saturday', 'Sunday']
     return weekday[date_val.weekday()]
@@ -31,5 +34,9 @@ def get_day_of_week_on(date_val: datetime) -> str:
 
 def get_current_age(birthdate: date) -> int:
     """Returns the age from inputted birthdate"""
+
+    if not isinstance(birthdate, date):
+        raise TypeError("Date required.")
+
     today = date.today()
     return today.year - birthdate.year - ((today.month, today.day) < (birthdate.month, birthdate.year))

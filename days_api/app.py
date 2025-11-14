@@ -38,11 +38,20 @@ def index():
 def between():
     data = request.json
 
+    if "first" not in data or "last" in data:
+        return jsonify({"error": "Missing required data."}), 400
+
+    elif not type(data["first"]) == str or not type(data["last"]) == str:
+        return jsonify({"error": "Unable to convert value to datetime."}), 400
+
+    elif "." not in data["first"] or "." not in data["last"]:
+        return jsonify({"error": "Unable to convert value to datetime."}), 400
+
     first_date = convert_to_datetime(data["first"])
-    second_date = convert_to_datetime(date["second"])
+    second_date = convert_to_datetime(date["last"])
     difference = get_days_between(first_date, second_date)
 
-    return {"days": (difference).days}, 201
+    return jsonify({"days": (difference).days}), 201
 
 
 @app.post("/weekday")
@@ -67,7 +76,7 @@ def history():
 def current_age():
     age_date = request.args.get("age_date")
     date_class_age = datetime.strptime(age_date, "%Y-%m-%d")
-    return {"current_age": get_current_age(date_class_age)}, 200
+    return jsonify({"current_age": get_current_age(date_class_age)}), 200
 
 
 if __name__ == "__main__":

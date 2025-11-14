@@ -82,18 +82,19 @@ def weekday():
 @app.route("/history", methods=["GET", "DELETE"])
 def history():
     if (request.method) == "GET":
-        input_number = request.args.get("number", 5)
-        if type(input_number) != str:
+        requested_index = request.args.get("number", 5)
+
+        if type(requested_index) != int:
             return {"error": "Number must be an integer between 1 and 20."}, 400
+
         else:
             try:
-                requested_index = int(input_number)
-
                 if requested_index < 0 or requested_index > 21:
                     return {"error": "Number must be an integer between 1 and 20."}, 400
                 else:
                     add_to_history(request)
                     return app_history[:requested_index], 200
+
             except ValueError:
                 return {"error": "Number must be an integer between 1 and 20."}, 400
 

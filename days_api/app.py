@@ -82,15 +82,20 @@ def weekday():
 @app.route("/history", methods=["GET", "DELETE"])
 def history():
     if (request.method) == "GET":
-        try:
-            requested_index = int(request.args.get("number", 5))
-            if requested_index < 0 or requested_index > 21:
-                return {"error": "Number must be an integer between 1 and 20."}, 400
-            number_index = int(requested_index)
-            add_to_history(request)
-            return app_history[:requested_index], 200
-        except ValueError:
+        input_number = request.args.get("number", 5)
+        if type(input_number) != str:
             return {"error": "Number must be an integer between 1 and 20."}, 400
+        else:
+            try:
+                requested_index = int(input_number)
+
+                if requested_index < 0 or requested_index > 21:
+                    return {"error": "Number must be an integer between 1 and 20."}, 400
+                else:
+                    add_to_history(request)
+                    return app_history[:requested_index], 200
+            except ValueError:
+                return {"error": "Number must be an integer between 1 and 20."}, 400
 
     if (request.method) == "DELETE":
         clear_history()
@@ -101,9 +106,20 @@ def history():
 @app.get("/current_age")
 def current_age():
     age_date = request.args.get("date")
-    date_class_age = datetime.strptime(age_date, "%Y-%m-%d")
-    add_to_history(request)
-    return jsonify({"current_age": get_current_age(date_class_age)}), 200
+
+    if age_date != str:
+        return {"error": "Value for data parameter is invalid."}, 400
+
+    elif "-" not in age_date:
+        return {"error": "Value for data parameter is invalid."}, 400
+
+    else:
+        try:
+            date_class_age = datetime.strptime(age_date, "%Y-%m-%d")
+            add_to_history(request)
+            return jsonify({"current_age": get_current_age(date_class_age)}), 200
+        except ValueError:
+            return {"error": "Value for data parameter is invalid."}, 400
 
 
 if __name__ == "__main__":

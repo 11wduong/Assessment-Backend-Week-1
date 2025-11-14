@@ -16,6 +16,7 @@ app = Flask(__name__)
 
 def add_to_history(current_request):
     """Adds a route to the app history."""
+
     app_history.append({
         "method": current_request.method,
         "at": datetime.now().strftime("%d/%m/%Y %H:%M"),
@@ -48,31 +49,60 @@ def between():
     second_date = convert_to_datetime(data["last"])
     difference = get_days_between(first_date, second_date)
 
-    return jsonify({"days": difference}), 201
+    add_to_history(request)
+    return jsonify({"days": difference}), 200
 
 
 @app.post("/weekday")
 def weekday():
     data = request.json
 
-    date = convert_to_datetime(data["date"])
+    if not data:
+        return {"error": "Missing required data."}, 400
 
-    return get_day_of_week_on(date), 201
+    elif "date" not in data:
+        return {"error": "Missing required data."}, 400
+
+    elif type(data["date"]) != str:
+        return {"error": 'Unable to convert value to datetime.'}, 400
+
+    elif "." not in data["date"]:
+        return {"error": 'Unable to convert value to datetime.'}, 400
+
+    try:
+        date = convert_to_datetime(data["date"])
+
+        add_to_history(request)
+        return {"weekday": get_day_of_week_on(date)}, 200
+
+    except ValueError:
+        return {"error": 'Unable to convert value to datetime.'}, 400
 
 
 @app.route("/history", methods=["GET", "DELETE"])
 def history():
     if (request.method) == "GET":
-        return app_history, 200
+        try:
+            requested_index = int(request.args.get("number", 5))
+            if requested_index < 0 or requested_index > 21:
+                return {"error": "Number must be an integer between 1 and 20."}, 400
+            number_index = int(requested_index)
+            add_to_history(request)
+            return app_history[:requested_index], 200
+        except ValueError:
+            return {"error": "Number must be an integer between 1 and 20."}, 400
 
     if (request.method) == "DELETE":
-        pass
+        clear_history()
+        add_to_history(request)
+        return {"status": "History cleared"}, 201
 
 
 @app.get("/current_age")
 def current_age():
-    age_date = request.args.get("age_date")
+    age_date = request.args.get("date")
     date_class_age = datetime.strptime(age_date, "%Y-%m-%d")
+    add_to_history(request)
     return jsonify({"current_age": get_current_age(date_class_age)}), 200
 
 

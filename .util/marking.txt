@@ -3,11 +3,11 @@ platform linux -- Python 3.12.12, pytest-9.0.1, pluggy-1.6.0
 rootdir: /home/runner/work/Assessment-Backend-Week-1/Assessment-Backend-Week-1
 collected 112 items
 
-days_api/test_api.py ................................................FFF [ 45%]
-FF.FFFFF...F.....FFFFF                                                   [ 65%]
+days_api/test_api.py ................................................... [ 45%]
+......................                                                   [ 65%]
 days_api/test_date_functions.py .......................................  [100%]
 
-======================== 16 failed, 96 passed in 0.29s =========================
+============================= 112 passed in 0.28s ==============================
 ************* Module app
 days_api/app.py:45:0: C0301: Line too long (120/100) (line-too-long)
 days_api/app.py:39:0: C0116: Missing function or method docstring (missing-function-docstring)
@@ -19,9 +19,7 @@ days_api/app.py:73:8: W0621: Redefining name 'date' from outer scope (line 5) (r
 days_api/app.py:60:4: R1705: Unnecessary "elif" after "return", remove the leading "el" from "elif" (no-else-return)
 days_api/app.py:66:9: C0123: Use isinstance() rather than type() for a typecheck. (unidiomatic-typecheck)
 days_api/app.py:83:0: C0116: Missing function or method docstring (missing-function-docstring)
-days_api/app.py:87:8: R1705: Unnecessary "else" after "return", remove the "else" and de-indent the code inside it (no-else-return)
-days_api/app.py:87:11: C0123: Use isinstance() rather than type() for a typecheck. (unidiomatic-typecheck)
-days_api/app.py:92:16: R1705: Unnecessary "else" after "return", remove the "else" and de-indent the code inside it (no-else-return)
+days_api/app.py:95:8: R1705: Unnecessary "else" after "return", remove the "else" and de-indent the code inside it (no-else-return)
 days_api/app.py:83:0: R1710: Either all return statements in a function should return an expression, or none of them should. (inconsistent-return-statements)
 days_api/app.py:108:0: C0116: Missing function or method docstring (missing-function-docstring)
 days_api/app.py:111:4: R1705: Unnecessary "elif" after "return", remove the leading "el" from "elif" (no-else-return)
@@ -31,5 +29,5 @@ days_api/app.py:7:0: W0611: Unused Response imported from flask (unused-import)
 days_api/date_functions.py:11:8: W0707: Consider explicitly re-raising using 'except ValueError as exc' and 'raise ValueError('Unable to convert value to datetime.') from exc' (raise-missing-from)
 
 -----------------------------------
-Your code has been rated at 7.98/10
+Your code has been rated at 8.23/10
 

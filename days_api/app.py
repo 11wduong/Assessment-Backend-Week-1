@@ -82,33 +82,36 @@ def weekday():
 @app.route("/history", methods=["GET", "DELETE"])
 def history():
     if (request.method) == "GET":
-        requested_index = request.args.get("number", 5)
 
-        if type(requested_index) != int:
+        try:
+            requested_index = int(request.args.get("number", 5))
+
+        except ValueError:
             return {"error": "Number must be an integer between 1 and 20."}, 400
 
-        else:
-            try:
-                if requested_index < 0 or requested_index > 21:
-                    return {"error": "Number must be an integer between 1 and 20."}, 400
-                else:
-                    add_to_history(request)
-                    return app_history[:requested_index], 200
+        if not isinstance(requested_index, int):
+            return {"error": "Number must be an integer between 1 and 20."}, 400
 
-            except ValueError:
-                return {"error": "Number must be an integer between 1 and 20."}, 400
+        if requested_index <= 0 or requested_index > 21:
+            return {"error": "Number must be an integer between 1 and 20."}, 400
+        else:
+            add_to_history(request)
+            return app_history[:requested_index][::-1], 200
 
     if (request.method) == "DELETE":
-        clear_history()
         add_to_history(request)
-        return {"status": "History cleared"}, 201
+        clear_history()
+        return {"status": "History cleared"}, 200
 
 
 @app.get("/current_age")
 def current_age():
     age_date = request.args.get("date")
 
-    if age_date != str:
+    if not age_date:
+        return {"error": 'Date parameter is required.'}, 400
+
+    elif not isinstance(age_date, str):
         return {"error": "Value for data parameter is invalid."}, 400
 
     elif "-" not in age_date:
